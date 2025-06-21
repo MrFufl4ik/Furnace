@@ -1,4 +1,4 @@
-#pragma oncecom
+#pragma once
 #include "iostream"
 
 class MinecraftComponent {

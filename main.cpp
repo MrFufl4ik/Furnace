@@ -6,15 +6,17 @@
 
 
 void print_components(const std::vector<MinecraftComponent *>& components){
-    LogManager::sendSeparator();
+    auto* logManager = LogManager::getInstance();
+
+    logManager->sendSeparator();
     for (int i = 0; i < components.size(); i++){
         auto* component = components[i];
-        LogManager::sendInfoLog(std::format("Component id: {}", i));
-        LogManager::sendInfoLog(std::format("Component address: {}", static_cast<void*>(component)));
-        LogManager::sendInfoLog(std::format("Component uid: {}", *component->getComponentUID()));
-        LogManager::sendInfoLog(std::format("Component version{}", *component->getComponentVersion()));
+        logManager->sendInfoLog(std::format("Component id: {}", i));
+        logManager->sendInfoLog(std::format("Component address: {}", static_cast<void*>(component)));
+        logManager->sendInfoLog(std::format("Component uid: {}", *component->getComponentUID()));
+        logManager->sendInfoLog(std::format("Component version: {}", *component->getComponentVersion()));
     }
-    LogManager::sendSeparator();
+    logManager->sendSeparator();
 }
 
 
@@ -31,7 +33,9 @@ int main(int argc, char **argv) {
 
     MinecraftInstance baseInstance = MinecraftInstance();
     baseInstance.setComponents({mcMinecraftComponent});
-
+    print_components(baseInstance.getComponents());
+    baseInstance.getComponents().clear();
+    print_components(baseInstance.getComponents());
 
     return 0;
 }

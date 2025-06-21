@@ -20,15 +20,22 @@ MinecraftInstance::~MinecraftInstance() {
 void MinecraftInstance::setComponents(const std::vector<MinecraftComponent *>& _components) {
     components.clear();
     for (auto component : _components) components.emplace_back(component);
+    LogManager::sendInfoLog(
+        std::format("Set minecraft instance ({}) components to: //DEVELOP", static_cast<void*>(this))
+    );
 }
 
 std::vector<MinecraftComponent *> MinecraftInstance::getComponents() {
     return components;
 }
 
-
 void MinecraftInstance::setJavaPath(const std::string& _java_path) {
     *java_path = _java_path;
+    LogManager::sendInfoLog(
+        std::format(
+                "Set minecraft instance ({}) java path to: {}", static_cast<void*>(this), *java_path
+        )
+    );
 }
 
 std::string *MinecraftInstance::getJavaPath() {
@@ -37,6 +44,11 @@ std::string *MinecraftInstance::getJavaPath() {
 
 void MinecraftInstance::setJavaVersion(const std::string& _java_version) {
     *java_version = _java_version;
+    LogManager::sendInfoLog(
+        std::format(
+                "Set minecraft instance ({}) java version to: {}", static_cast<void*>(this), *java_version
+        )
+    );
 }
 
 std::string *MinecraftInstance::getJavaVersion() {
@@ -45,6 +57,11 @@ std::string *MinecraftInstance::getJavaVersion() {
 
 void MinecraftInstance::setJavaVendor(const std::string& _java_vendor) {
     *java_vendor = _java_vendor;
+    LogManager::sendInfoLog(
+        std::format(
+                "Set minecraft instance ({}) java vendor to: {}", static_cast<void*>(this), *java_vendor
+        )
+    );
 }
 
 std::string *MinecraftInstance::getJavaVendor() {
@@ -53,6 +70,11 @@ std::string *MinecraftInstance::getJavaVendor() {
 
 void MinecraftInstance::setJWMArgs(const std::string& _jwm_args) {
     *jwm_args = _jwm_args;
+    LogManager::sendInfoLog(
+        std::format(
+                "Set minecraft instance ({}) jwm args to: {}", static_cast<void*>(this), *jwm_args
+        )
+    );
 }
 
 std::string *MinecraftInstance::getJWMArgs() {
