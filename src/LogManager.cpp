@@ -29,3 +29,7 @@ void LogManager::sendSuccessLog(std::string success_text) {
         )
         << std::endl;
 }
+
+void LogManager::sendSeparator() {
+    std::cout << std::endl;
+}
