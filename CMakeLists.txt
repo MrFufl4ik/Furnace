@@ -12,5 +12,11 @@ add_executable(furnace main.cpp
         src/minecraft/MinecraftInstance.h
         src/minecraft/MinecraftComponent.cpp
         src/minecraft/MinecraftComponent.h
+        src/minecraft/MinecraftComponentUtil.cpp
+        src/minecraft/MinecraftComponentUtil.h
+        src/minecraft/MinecraftInstanceManager.cpp
+        src/minecraft/MinecraftInstanceManager.h
+        src/metadata/MetaDataHelper.cpp
+        src/metadata/MetaDataHelper.h
 )
 target_link_libraries(furnace PRIVATE stdc++)
