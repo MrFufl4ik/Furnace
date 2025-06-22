@@ -4,6 +4,7 @@
 #include "src/minecraft/MinecraftComponent.h"
 #include "src/minecraft/MinecraftInstance.h"
 #include "src/minecraft/MinecraftComponentUtil.h"
+#include "src/minecraft/MinecraftInstanceManager.h"
 
 
 int main(int argc, char **argv) {
@@ -28,6 +29,7 @@ int main(int argc, char **argv) {
     );
     baseInstance.setComponents({mcMinecraftComponent, newMinecraftComponent});
 
+    MinecraftInstanceManager::getInstance()->runMinecraftInstance(baseInstance);
 
     return 0;
 }

@@ -1,13 +1,11 @@
 #include "MinecraftInstanceManager.h"
 
-MinecraftInstanceManager::MinecraftInstanceManager() = default;
-
 int MinecraftInstanceManager::runMinecraftInstance(MinecraftInstance minecraftInstance) {
     std::string command;
     if (!minecraftInstance.hasJavaPath()) return 101;
     command += std::format("{} ", *minecraftInstance.getJavaPath());
     if (minecraftInstance.hasJWMArgs()) command += std::format("{} ", *minecraftInstance.getJWMArgs());
-    std::vector<std::string> libraries {
+    std::vector<std::string> libraries{
             "com.github.oshi:oshi-core:6.4.10",
             "com.google.code.gson:gson:2.10.1",
             "com.google.guava:failureaccess:1.0.1",
@@ -50,12 +48,29 @@ int MinecraftInstanceManager::runMinecraftInstance(MinecraftInstance minecraftIn
             "org.slf4j:slf4j-api:2.0.9"
     };
 
-    for (auto lib : libraries){
-
+    logManager->sendSeparator();
+    for (int i = 0; i < libraries.size(); i++) {
+        std::string path = MetaDataHelper::convertMavenPathToJarPathRepresentation(libraries[i]);
+        bool status = std::filesystem::exists(
+                std::format(
+                        "{}/{}",
+                        "/home/mrfufl4ik/programming/cpp/furnace/launcher/libraries",
+                        path
+                )
+        );
+        if (status)
+            logManager->sendInfoLog(
+                    std::format("{}: {} | {}", i + 1, path, status)
+            );
+        else
+            logManager->sendErrorLog(
+                    std::format("{}: {} | {}", i + 1, path, status)
+            );
     }
 
+    logManager->sendSeparator();
 
-    system(command.c_str());
+//    system(command.c_str());
     return 0;
 }
 
@@ -63,6 +78,12 @@ void MinecraftInstanceManager::stopMinecraftInstance(MinecraftInstance minecraft
 
 }
 
+
+MinecraftInstanceManager::MinecraftInstanceManager() = default;
+
+MinecraftInstanceManager *MinecraftInstanceManager::instance = nullptr;
+
 MinecraftInstanceManager *MinecraftInstanceManager::getInstance() {
-    return nullptr;
+    if (instance == nullptr) if (instance == nullptr) instance = new MinecraftInstanceManager();
+    return instance;
 }

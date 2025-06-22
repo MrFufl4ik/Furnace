@@ -61,7 +61,7 @@ std::string *MinecraftInstance::getJavaPath() {
 }
 
 bool MinecraftInstance::hasJavaPath() {
-    return java_path == nullptr;
+    return java_path != nullptr;
 }
 
 void MinecraftInstance::setJavaVersion(const std::string &_java_version) {
@@ -78,7 +78,7 @@ std::string *MinecraftInstance::getJavaVersion() {
 }
 
 bool MinecraftInstance::hasJavaVersion() {
-    return java_version == nullptr;
+    return java_version != nullptr;
 }
 
 void MinecraftInstance::setJavaVendor(const std::string &_java_vendor) {
@@ -95,7 +95,7 @@ std::string *MinecraftInstance::getJavaVendor() {
 }
 
 bool MinecraftInstance::hasJavaVendor() {
-    return java_vendor == nullptr;
+    return java_vendor != nullptr;
 }
 
 void MinecraftInstance::setJWMArgs(const std::string &_jwm_args) {
@@ -108,7 +108,7 @@ void MinecraftInstance::setJWMArgs(const std::string &_jwm_args) {
 }
 
 bool MinecraftInstance::hasJWMArgs() {
-    return jwm_args == nullptr;
+    return jwm_args != nullptr;
 }
 
 
