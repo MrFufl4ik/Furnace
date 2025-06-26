@@ -1,11 +1,12 @@
 #include "MinecraftInstanceManager.h"
 
-int MinecraftInstanceManager::runMinecraftInstance(MinecraftInstance minecraftInstance) {
+
+int MinecraftInstanceManager::runMinecraftInstance(MinecraftInstance &minecraftInstance) {
     std::string command;
     if (!minecraftInstance.hasJavaPath()) return 101;
-    command += std::format("{} ", *minecraftInstance.getJavaPath());
-    if (minecraftInstance.hasJWMArgs()) command += std::format("{} ", *minecraftInstance.getJWMArgs());
-    std::vector<std::string> libraries{
+    command += std::format("{} ", minecraftInstance.getJavaPath());
+    if (minecraftInstance.hasJWMArgs()) command += std::format("{} ", minecraftInstance.getJWMArgs());
+    std::vector<std::string> mavenLibraries{
             "com.github.oshi:oshi-core:6.4.10",
             "com.google.code.gson:gson:2.10.1",
             "com.google.guava:failureaccess:1.0.1",
@@ -45,45 +46,104 @@ int MinecraftInstanceManager::runMinecraftInstance(MinecraftInstance minecraftIn
             "org.jcraft:jorbis:0.0.17",
             "org.joml:joml:1.10.5",
             "org.lz4:lz4-java:1.8.0",
-            "org.slf4j:slf4j-api:2.0.9"
+            "org.lwjgl:lwjgl-freetype-natives-linux:3.3.3",
+            "org.lwjgl:lwjgl-freetype:3.3.3",
+            "org.lwjgl:lwjgl-glfw-natives-linux:3.3.3",
+            "org.lwjgl:lwjgl-glfw:3.3.3",
+            "org.lwjgl:lwjgl-jemalloc-natives-linux:3.3.3",
+            "org.lwjgl:lwjgl-jemalloc:3.3.3",
+            "org.lwjgl:lwjgl-natives-linux:3.3.3",
+            "org.lwjgl:lwjgl:3.3.3",
+            "org.lwjgl:lwjgl-openal-natives-linux:3.3.3",
+            "org.lwjgl:lwjgl-openal:3.3.3",
+            "org.lwjgl:lwjgl-opengl-natives-linux:3.3.3",
+            "org.lwjgl:lwjgl-opengl:3.3.3",
+            "org.lwjgl:lwjgl-stb-natives-linux:3.3.3",
+            "org.lwjgl:lwjgl-stb:3.3.3",
+            "org.lwjgl:lwjgl-tinyfd-natives-linux:3.3.3",
+            "org.lwjgl:lwjgl-tinyfd:3.3.3",
+            "org.slf4j:slf4j-api:2.0.9",
+            "com.mojang:minecraft:1.21.1:client",
     };
+    std::string librariesRoot = "/home/mrfufl4ik/programming/cpp/furnace/launcher/libraries";
 
-    logManager->sendSeparator();
-    for (int i = 0; i < libraries.size(); i++) {
-        std::string path = MetaDataHelper::convertMavenPathToJarPathRepresentation(libraries[i]);
-        bool status = std::filesystem::exists(
-                std::format(
-                        "{}/{}",
-                        "/home/mrfufl4ik/programming/cpp/furnace/launcher/libraries",
-                        path
-                )
+    {
+        bool result = validateLibraries(
+                mavenLibraries,
+                librariesRoot
         );
-        if (status)
-            logManager->sendInfoLog(
-                    std::format("{}: {} | {}", i + 1, path, status)
-            );
-        else
-            logManager->sendErrorLog(
-                    std::format("{}: {} | {}", i + 1, path, status)
-            );
+        if (!result) return 102;
     }
+    std::string librariesStringRepresentation = convertLibrariesToStringRepresentation(mavenLibraries, librariesRoot);
 
-    logManager->sendSeparator();
+    command.append("-cp ");
+    command.append(librariesStringRepresentation);
+    command.append(std::format(" {}", "net.minecraft.client.main.Main"));
+    command.append(std::format(" {} {}", "--username", "Player"));
+    command.append(std::format(" {} {}", "--version", "1.21.1"));
+    command.append(
+            std::format(
+                    " --accessToken 0 {}",
+                    "--userProperties "
+            )
+    ).append("{}");
+    command.append(std::format(" {} {}", "--gameDir", "/home/mrfufl4ik/programming/cpp/furnace/minecraft"));
+    command.append(std::format(" {} {}", "--assetsDir", "/home/mrfufl4ik/programming/cpp/furnace/launcher/assets"));
+    command.append(std::format(" {} {}", "--assetIndex", "17"));
 
-//    system(command.c_str());
+    log_manager->sendInfoLog(command);
+    //system(command.c_str());
     return 0;
 }
 
-void MinecraftInstanceManager::stopMinecraftInstance(MinecraftInstance minecraftInstance) {
+void MinecraftInstanceManager::stopMinecraftInstance(MinecraftInstance &minecraftInstance) {
 
 }
 
-
 MinecraftInstanceManager::MinecraftInstanceManager() = default;
+
+MinecraftInstanceManager::~MinecraftInstanceManager() {
+    delete log_manager;
+}
 
 MinecraftInstanceManager *MinecraftInstanceManager::instance = nullptr;
 
 MinecraftInstanceManager *MinecraftInstanceManager::getInstance() {
     if (instance == nullptr) if (instance == nullptr) instance = new MinecraftInstanceManager();
     return instance;
+}
+
+bool MinecraftInstanceManager::validateLibraries(std::vector<std::string> libraries, std::string libraries_root) {
+    log_manager->sendSeparator();
+    log_manager->sendInfoLog("Validating libraries...");
+    bool result = true;
+    for (int i = 0; i < libraries.size(); i++) {
+        std::string localPath = MetaDataHelper::convertMavenPathToJarPathRepresentation(libraries[i]);
+        std::string absolutePath = std::format("{}/{}", libraries_root, localPath);
+        bool status = std::filesystem::exists(absolutePath);
+        if (status){
+            log_manager->sendSuccessLog(
+                    std::format("{}: {} | {}", i + 1, localPath, "OK")
+            );
+        }
+        else {
+            log_manager->sendErrorLog(
+                    std::format("{}: {} | {}", i + 1, localPath, "Not Found")
+            );
+            result = false;
+        }
+    }
+    log_manager->sendSeparator();
+    return result;
+}
+
+std::string MinecraftInstanceManager::convertLibrariesToStringRepresentation(std::vector<std::string> libraries,
+                                                                             std::string libraries_root) {
+    std::string result;
+    for (int i = 0; i < libraries.size(); i++) {
+        std::string path = MetaDataHelper::convertMavenPathToJarPathRepresentation(libraries[i]);
+        result.append(std::format("{}/{}", libraries_root, path));
+        if ((i + 1) < libraries.size()) result.append(":");
+    }
+    return result;
 }

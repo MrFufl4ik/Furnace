@@ -12,25 +12,18 @@ std::string MetaDataHelper::convertMavenPathToJarPathRepresentation(const std::s
     }
     parts.push_back(mavenArtifact.substr(start));
 
-    if (parts.size() < 3) return "";
+    if (parts.size() < 3 || parts.size() > 4) return "";
 
     std::string groupId = parts[0];
     std::string artifactId = parts[1];
     std::string version = parts[2];
-    std::string classifier = parts.size() > 3 ? parts[3] : "";
+    std::string classifier = (parts.size() == 4) ? parts[3] : "";
 
-    std::string groupPath = groupId;
-    std::replace(groupPath.begin(), groupPath.end(), '.', '/');
-
-    std::string jarPath = groupPath + "/" + artifactId + "/" + version + "/";
-
-    if (!classifier.empty()) jarPath += classifier + "/";
+    std::replace(groupId.begin(), groupId.end(), '.', '/');
 
     std::string fileName = artifactId + "-" + version;
     if (!classifier.empty()) fileName += "-" + classifier;
     fileName += ".jar";
 
-    std::replace(fileName.begin(), fileName.end(), ':', '-');
-
-    return jarPath + fileName;
+    return groupId + "/" + artifactId + "/" + version + "/" + fileName;
 }

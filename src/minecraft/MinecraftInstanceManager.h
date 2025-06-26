@@ -8,11 +8,15 @@ class MinecraftInstanceManager {
 private:
     static MinecraftInstanceManager *instance;
     MinecraftInstanceManager();
+    ~MinecraftInstanceManager();
 
-    LogManager *logManager{LogManager::getInstance()};
+    LogManager *log_manager{LogManager::getInstance()};
 public:
-    int runMinecraftInstance(MinecraftInstance minecraftInstance);
-    void stopMinecraftInstance(MinecraftInstance minecraftInstance);
+    int runMinecraftInstance(MinecraftInstance &minecraftInstance);
+    void stopMinecraftInstance(MinecraftInstance &minecraftInstance);
+
+    bool validateLibraries(std::vector<std::string> libraries, std::string libraries_root);
+    std::string convertLibrariesToStringRepresentation(std::vector<std::string> libraries, std::string libraries_root);
 
     static MinecraftInstanceManager *getInstance();
 
