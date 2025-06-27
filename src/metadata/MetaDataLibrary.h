@@ -17,10 +17,7 @@ public:
     );
 
     std::string getName() { return name; };
-
-    std::string getDownloadArtifactSha1() { return downloadArtifactSha1; };
-
-    std::string getDownloadArtifactSize() { return downloadArtifactSize; };
-
-    std::string getDownloadArtifactUrl() { return downloadArtifactUrl; };
+    std::string getDownloadArtifactSha1()   { return downloadArtifactSha1;  };
+    std::string getDownloadArtifactSize()   { return downloadArtifactSize;  };
+    std::string getDownloadArtifactUrl()    { return downloadArtifactUrl;   };
 };

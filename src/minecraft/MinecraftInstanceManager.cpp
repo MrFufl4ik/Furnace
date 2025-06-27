@@ -89,7 +89,7 @@ int MinecraftInstanceManager::runMinecraftInstance(MinecraftInstance &minecraftI
     ).append("{}");
     command.append(std::format(" {} {}", "--gameDir", "/home/mrfufl4ik/programming/cpp/furnace/minecraft"));
     command.append(std::format(" {} {}", "--assetsDir", "/home/mrfufl4ik/programming/cpp/furnace/launcher/assets"));
-    command.append(std::format(" {} {}", "--assetIndex", "17"));
+    command.append(std::format(" {} {}", "--assetIndex", "26"));
 
     log_manager->sendInfoLog(command);
     //system(command.c_str());
