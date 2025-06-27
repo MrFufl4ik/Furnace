@@ -5,6 +5,8 @@
 #include "src/minecraft/MinecraftInstance.h"
 #include "src/minecraft/MinecraftComponentUtil.h"
 #include "src/minecraft/MinecraftInstanceManager.h"
+#include "src/json/JsonManager.h"
+#include "src/operatingsystem/OperatingSystemManager.h"
 
 
 int main(int argc, char **argv) {
@@ -30,6 +32,11 @@ int main(int argc, char **argv) {
     baseInstance.setComponents({mcMinecraftComponent, newMinecraftComponent});
 
     MinecraftInstanceManager::getInstance()->runMinecraftInstance(baseInstance);
+
+    JsonManager *jsonManager = JsonManager::getInstance();
+    OperatingSystemManager *operatingSystemManager = OperatingSystemManager::getInstance();
+    auto data = jsonManager->readJsonFile(operatingSystemManager->getExecutableDirectory() / ".." / "test" / "file.json");
+    logManager->sendInfoLog(jsonManager->convertJsonToStringRepresentation(data["test_field"]));
 
     return 0;
 }

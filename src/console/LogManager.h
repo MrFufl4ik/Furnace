@@ -19,7 +19,7 @@ public:
 
     //object
     template<typename T>
-    void sendDestructCreateObjectLog(T &obj) {
+    void sendDestructObjectLog(T &obj) {
         const std::string &type_name = typeid(obj).name();
         const std::string &address = std::format("{}", static_cast<const void *>(&obj));
         const std::string &text_to_log = std::format("Destruct object: {}, with memory address: {}", type_name, address);

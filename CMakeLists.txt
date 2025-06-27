@@ -28,5 +28,7 @@ add_executable(furnace main.cpp
         src/metadata/MetaDataAssetIndex.h
         src/json/JsonManager.cpp
         src/json/JsonManager.h
+        src/operatingsystem/OperatingSystemManager.cpp
+        src/operatingsystem/OperatingSystemManager.h
 )
 target_link_libraries(furnace PRIVATE stdc++)

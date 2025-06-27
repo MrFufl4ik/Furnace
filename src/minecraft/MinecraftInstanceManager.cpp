@@ -1,5 +1,13 @@
 #include "MinecraftInstanceManager.h"
 
+//Standalone
+
+MinecraftInstanceManager *MinecraftInstanceManager::instance = nullptr;
+
+MinecraftInstanceManager *MinecraftInstanceManager::getInstance() {
+    if (instance == nullptr) if (instance == nullptr) instance = new MinecraftInstanceManager();
+    return instance;
+}
 
 int MinecraftInstanceManager::runMinecraftInstance(MinecraftInstance &minecraftInstance) {
     std::string command;
@@ -104,13 +112,6 @@ MinecraftInstanceManager::MinecraftInstanceManager() = default;
 
 MinecraftInstanceManager::~MinecraftInstanceManager() {
     delete log_manager;
-}
-
-MinecraftInstanceManager *MinecraftInstanceManager::instance = nullptr;
-
-MinecraftInstanceManager *MinecraftInstanceManager::getInstance() {
-    if (instance == nullptr) if (instance == nullptr) instance = new MinecraftInstanceManager();
-    return instance;
 }
 
 bool MinecraftInstanceManager::validateLibraries(std::vector<std::string> libraries, std::string libraries_root) {

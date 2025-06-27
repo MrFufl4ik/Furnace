@@ -12,7 +12,7 @@ MinecraftComponent::~MinecraftComponent() {
     delete component_uid;
     delete component_version;
     logManager->sendSeparator();
-    logManager->sendDestructCreateObjectLog(*this);
+    logManager->sendDestructObjectLog(*this);
 }
 
 void MinecraftComponent::setComponentUID(const std::string &_component_uid) {

@@ -9,7 +9,7 @@ MinecraftInstance::MinecraftInstance() {
 
 MinecraftInstance::~MinecraftInstance() {
     logManager->sendSeparator();
-    logManager->sendDestructCreateObjectLog(*this);
+    logManager->sendDestructObjectLog(*this);
 }
 
 void MinecraftInstance::setComponents(const std::vector<MinecraftComponent *> &_components) {
