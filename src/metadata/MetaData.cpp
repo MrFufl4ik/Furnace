@@ -13,3 +13,7 @@ void MetaData::setCompatibleJavaMajors(const std::vector<int> &compatible_java_m
 void MetaData::setMetaDataAssetIndex(const MetaDataAssetIndex &meta_data_asset_index) {
     this->assetIndex = meta_data_asset_index;
 }
+
+void MetaData::setCompatibleJavaName(const std::string &compatible_java_name) {
+    this->compatibleJavaName = compatible_java_name;
+}

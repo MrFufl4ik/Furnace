@@ -12,10 +12,10 @@ public:
     MinecraftComponent();
     ~MinecraftComponent();
 
-    void setUID(const std::string &_component_uid);
+    void setUID(const std::string &component_uid);
     std::string *getUID() const { return componentUid; };
 
-    void setVersion(const std::string &_component_version);
+    void setVersion(const std::string &component_version);
     std::string *getVersion() const { return componentVersion; };
 
     LogManager *logManager;

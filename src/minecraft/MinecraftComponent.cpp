@@ -16,16 +16,16 @@ MinecraftComponent::~MinecraftComponent() {
     logManager->sendDestructObjectLog(*this);
 }
 
-void MinecraftComponent::setUID(const std::string &_component_uid) {
-    *componentUid = _component_uid;
-    logManager->sendInfoLog(
-            std::format("Set minecraft component ({}) uid to: {}", (static_cast<void *>(this)), *componentUid)
-    );
+void MinecraftComponent::setUID(const std::string &component_uid) {
+    *componentUid = component_uid;
+    nlohmann::json json = nlohmann::json();
+    json["uid"] = *componentUid;
+    logManager->sendChangeValueJsonLog(json, *this);
 }
 
-void MinecraftComponent::setVersion(const std::string &_component_version) {
-    *componentVersion = _component_version;
-    logManager->sendInfoLog(
-            std::format("Set minecraft component ({}) version to {}", (static_cast<void *>(this)), *componentVersion)
-    );
+void MinecraftComponent::setVersion(const std::string &component_version) {
+    *componentVersion = component_version;
+    nlohmann::json json = nlohmann::json();
+    json["version"] = *componentVersion;
+    logManager->sendChangeValueJsonLog(json, *this);
 }
