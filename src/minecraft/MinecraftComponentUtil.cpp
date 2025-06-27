@@ -6,8 +6,8 @@ MinecraftComponentUtil::getStringRepresentationOfMinecraftComponent(MinecraftCom
             "{" +
             std::format(
                     "uuid: {}, version: {}",
-                    *minecraftComponent.getComponentUID(),
-                    *minecraftComponent.getComponentVersion()
+                    *minecraftComponent.getUID(),
+                    *minecraftComponent.getVersion()
             ) +
             "}";
 }

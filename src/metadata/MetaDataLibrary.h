@@ -1,4 +1,6 @@
 #pragma once
+#ifndef FURNACE_META_DATA_LIBRARY_H
+#define FURNACE_META_DATA_LIBRARY_H
 
 #include <string>
 
@@ -21,3 +23,5 @@ public:
     const std::string &getDownloadArtifactSize()    const { return downloadArtifactSize;  };
     const std::string &getDownloadArtifactUrl()     const { return downloadArtifactUrl;   };
 };
+
+#endif //FURNACE_META_DATA_LIBRARY_H

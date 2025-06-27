@@ -30,5 +30,7 @@ add_executable(furnace main.cpp
         src/json/JsonManager.h
         src/operatingsystem/OperatingSystemManager.cpp
         src/operatingsystem/OperatingSystemManager.h
+        src/json/JsonUtils.cpp
+        src/json/JsonUtils.h
 )
 target_link_libraries(furnace PRIVATE stdc++)

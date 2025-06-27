@@ -18,12 +18,12 @@ int main(int argc, char **argv) {
         logManager->sendInfoLog(std::format("Argument {}: {}", std::to_string(i), main_args[i]));
 
     auto *mcMinecraftComponent = new MinecraftComponent();
-    mcMinecraftComponent->setComponentUID("net.minecraft");
-    mcMinecraftComponent->setComponentVersion("1.21.1");
+    mcMinecraftComponent->setUID("net.minecraft");
+    mcMinecraftComponent->setVersion("1.21.1");
 
     auto *newMinecraftComponent = new MinecraftComponent();
-    newMinecraftComponent->setComponentUID("org.lwjgl3");
-    newMinecraftComponent->setComponentVersion("org.lwjgl3");
+    newMinecraftComponent->setUID("org.lwjgl3");
+    newMinecraftComponent->setVersion("org.lwjgl3");
 
     MinecraftInstance baseInstance = MinecraftInstance();
     baseInstance.setJavaPath(
@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
     JsonManager *jsonManager = JsonManager::getInstance();
     OperatingSystemManager *operatingSystemManager = OperatingSystemManager::getInstance();
     auto data = jsonManager->readJsonFile(operatingSystemManager->getExecutableDirectory() / ".." / "test" / "file.json");
-    logManager->sendInfoLog(jsonManager->convertJsonToStringRepresentation(data["test_field"]));
+    logManager->sendInfoLog(JsonUtils::convertJsonToStringRepresentation(data["test_field"]));
 
     return 0;
 }

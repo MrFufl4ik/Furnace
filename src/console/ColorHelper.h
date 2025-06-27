@@ -1,4 +1,7 @@
 #pragma once
+#ifndef FURNACE_COLOR_HELPER_H
+#define FURNACE_COLOR_HELPER_H
+
 #include "iostream"
 
 class ColorHelper {
@@ -29,3 +32,5 @@ public:
 
     static std::string colorize(const std::string& text, std::initializer_list<Code> codes);
 };
+
+#endif //FURNACE_COLOR_HELPER_H

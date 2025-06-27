@@ -1,4 +1,6 @@
 #pragma once
+#ifndef FURNACE_OPERATING_SYSTEM_MANAGER_H
+#define FURNACE_OPERATING_SYSTEM_MANAGER_H
 
 #include "../console/LogManager.h"
 #include <filesystem>
@@ -26,3 +28,5 @@ public:
     OperatingSystemManager(const OperatingSystemManager &) = delete;
     OperatingSystemManager &operator=(const OperatingSystemManager &) = delete;
 };
+
+#endif //FURNACE_OPERATING_SYSTEM_MANAGER_H

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef FURNACE_META_DATA_H
+#define FURNACE_META_DATA_H
 
 #include "MetaDataLibrary.h"
 #include "MetaDataAssetIndex.h"
@@ -20,3 +22,5 @@ public:
     void setMetaDataLibraries(const std::vector<MetaDataLibrary> &meta_data_libraries);
     const std::vector<MetaDataLibrary> &getMetaDataLibraries() { return metaDataLibraries; };
 };
+
+#endif //FURNACE_META_DATA_H

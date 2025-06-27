@@ -1,7 +1,6 @@
 #include "JsonManager.h"
 
 //Standalone
-
 JsonManager *JsonManager::instance = nullptr;
 JsonManager *JsonManager::getInstance() {
     if (instance == nullptr) if (instance == nullptr) instance = new JsonManager();
@@ -45,10 +44,4 @@ nlohmann::json JsonManager::readJsonFile(const std::string &file_path) {
         );
     }
     return json;
-}
-
-std::string JsonManager::convertJsonToStringRepresentation(nlohmann::json json) {
-    std::stringstream string_stream;
-    string_stream << json;
-    return string_stream.str();
 }

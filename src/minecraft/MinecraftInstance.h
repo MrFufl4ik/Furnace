@@ -1,4 +1,6 @@
 #pragma once
+#ifndef FURNACE_MINECRAFT_INSTANCE_H
+#define FURNACE_MINECRAFT_INSTANCE_H
 
 #include "iostream"
 #include "vector"
@@ -38,3 +40,5 @@ public:
     std::string getJWMArgs() { return *jwm_args; };
     bool hasJWMArgs() { return jwm_args != nullptr; };
 };
+
+#endif //FURNACE_MINECRAFT_INSTANCE_H

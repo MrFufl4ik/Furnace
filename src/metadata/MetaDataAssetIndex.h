@@ -1,4 +1,6 @@
 #pragma once
+#ifndef FURNACE_META_DATA_ASSET_INDEX_H
+#define FURNACE_META_DATA_ASSET_INDEX_H
 
 #include <iostream>
 
@@ -24,3 +26,5 @@ public:
     const int           &getTotalSize() const { return this->totalSize; };
     const std::string   &getUrl()       const { return this->url; };
 };
+
+#endif //FURNACE_META_DATA_ASSET_INDEX_H

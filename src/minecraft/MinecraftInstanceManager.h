@@ -1,4 +1,7 @@
 #pragma once
+#ifndef FURNACE_INSTANCE_MANAGER_H
+#define FURNACE_INSTANCE_MANAGER_H
+
 
 #include "MinecraftInstance.h"
 #include "../metadata/MetaDataHelper.h"
@@ -23,3 +26,5 @@ public:
     MinecraftInstanceManager(const MinecraftInstanceManager &) = delete;
     MinecraftInstanceManager &operator=(const MinecraftInstanceManager &) = delete;
 };
+
+#endif //FURNACE_INSTANCE_MANAGER_H
