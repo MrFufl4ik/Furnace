@@ -10,14 +10,14 @@ private:
     std::string downloadArtifactUrl;
 public:
     MetaDataLibrary(
-            std::string _name,
-            std::string _downloadArtifactSha1,
-            std::string _downloadArtifactSize,
-            std::string _downloadArtifactUrl
+            const std::string &_name,
+            const std::string &_downloadArtifactSha1,
+            const std::string &_downloadArtifactSize,
+            const std::string &_downloadArtifactUrl
     );
 
-    std::string getName() { return name; };
-    std::string getDownloadArtifactSha1()   { return downloadArtifactSha1;  };
-    std::string getDownloadArtifactSize()   { return downloadArtifactSize;  };
-    std::string getDownloadArtifactUrl()    { return downloadArtifactUrl;   };
+    const std::string &getName() { return name; };
+    const std::string &getDownloadArtifactSha1()   { return downloadArtifactSha1;  };
+    const std::string &getDownloadArtifactSize()   { return downloadArtifactSize;  };
+    const std::string &getDownloadArtifactUrl()    { return downloadArtifactUrl;   };
 };

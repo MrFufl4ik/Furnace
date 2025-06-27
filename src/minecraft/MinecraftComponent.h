@@ -1,7 +1,7 @@
 #pragma once
 
 #include "iostream"
-#include "../LogManager.h"
+#include "../console/LogManager.h"
 
 class MinecraftComponent {
 public:

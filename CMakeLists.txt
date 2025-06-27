@@ -4,10 +4,10 @@ project(furnace)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(furnace main.cpp
-        src/LogManager.cpp
-        src/LogManager.h
-        src/ColorHelper.cpp
-        src/ColorHelper.h
+        src/console/LogManager.cpp
+        src/console/LogManager.h
+        src/console/ColorHelper.cpp
+        src/console/ColorHelper.h
         src/minecraft/MinecraftInstance.cpp
         src/minecraft/MinecraftInstance.h
         src/minecraft/MinecraftComponent.cpp
@@ -22,5 +22,7 @@ add_executable(furnace main.cpp
         src/metadata/MetaData.h
         src/metadata/MetaDataLibrary.cpp
         src/metadata/MetaDataLibrary.h
+        src/metadata/MetaDataAssetIndex.cpp
+        src/metadata/MetaDataAssetIndex.h
 )
 target_link_libraries(furnace PRIVATE stdc++)

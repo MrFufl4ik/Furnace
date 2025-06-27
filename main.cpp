@@ -1,6 +1,6 @@
 #include "vector"
 #include "format"
-#include "src/LogManager.h"
+#include "src/console/LogManager.h"
 #include "src/minecraft/MinecraftComponent.h"
 #include "src/minecraft/MinecraftInstance.h"
 #include "src/minecraft/MinecraftComponentUtil.h"

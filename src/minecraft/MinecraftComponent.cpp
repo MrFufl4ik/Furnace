@@ -1,5 +1,5 @@
 #include "MinecraftComponent.h"
-#include "../LogManager.h"
+#include "../console/LogManager.h"
 
 MinecraftComponent::MinecraftComponent() {
     component_uid = new std::string;

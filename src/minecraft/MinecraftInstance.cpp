@@ -1,5 +1,5 @@
 #include "MinecraftInstance.h"
-#include "../LogManager.h"
+#include "../console/LogManager.h"
 #include "MinecraftComponentUtil.h"
 
 MinecraftInstance::MinecraftInstance() {
