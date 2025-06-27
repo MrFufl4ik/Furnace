@@ -4,6 +4,8 @@ project(furnace)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(furnace main.cpp
+        libs/json.hpp
+
         src/console/LogManager.cpp
         src/console/LogManager.h
         src/console/ColorHelper.cpp
@@ -24,5 +26,7 @@ add_executable(furnace main.cpp
         src/metadata/MetaDataLibrary.h
         src/metadata/MetaDataAssetIndex.cpp
         src/metadata/MetaDataAssetIndex.h
+        src/json/JsonManager.cpp
+        src/json/JsonManager.h
 )
 target_link_libraries(furnace PRIVATE stdc++)

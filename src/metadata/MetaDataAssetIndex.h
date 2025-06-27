@@ -18,9 +18,9 @@ public:
             const std::string &url
     );
 
-    const int           &getId()        { return id; };
-    const std::string   &getSha1()      { return sha1; };
-    const int           &getSize()      { return size; };
-    const int           &getTotalSize() { return totalSize; };
-    const std::string   &getUrl()       { return url; };
+    const int           &getId()        const { return this->id; };
+    const std::string   &getSha1()      const { return this->sha1; };
+    const int           &getSize()      const { return this->size; };
+    const int           &getTotalSize() const { return this->totalSize; };
+    const std::string   &getUrl()       const { return this->url; };
 };

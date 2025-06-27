@@ -5,14 +5,14 @@ MinecraftComponent::MinecraftComponent() {
     component_uid = new std::string;
     component_version = new std::string;
     logManager->sendSeparator();
-    logManager->sendSuccessLog(std::format("Create minecraft component: {}", static_cast<void *>(this)));
+    logManager->sendCreateObjectLog(*this);
 }
 
 MinecraftComponent::~MinecraftComponent() {
     delete component_uid;
     delete component_version;
     logManager->sendSeparator();
-    logManager->sendSuccessLog(std::format("Destruct minecraft component: {}", static_cast<void *>(this)));
+    logManager->sendDestructCreateObjectLog(*this);
 }
 
 void MinecraftComponent::setComponentUID(const std::string &_component_uid) {

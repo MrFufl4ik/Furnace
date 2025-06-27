@@ -11,5 +11,5 @@ void MetaData::setCompatibleJavaMajors(const std::vector<int> &compatible_java_m
 }
 
 void MetaData::setMetaDataAssetIndex(const MetaDataAssetIndex &meta_data_asset_index) {
-    this->assetIndex = meta_data_asset_index
+    this->assetIndex = meta_data_asset_index;
 }

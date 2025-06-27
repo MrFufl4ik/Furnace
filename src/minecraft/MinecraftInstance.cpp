@@ -4,12 +4,12 @@
 
 MinecraftInstance::MinecraftInstance() {
     logManager->sendSeparator();
-    logManager->sendSuccessLog(std::format("Create minecraft instance: {}", static_cast<void *>(this)));
+    logManager->sendCreateObjectLog(*this);
 }
 
 MinecraftInstance::~MinecraftInstance() {
     logManager->sendSeparator();
-    logManager->sendSuccessLog(std::format("Destruct minecraft instance: {}", static_cast<void *>(this)));
+    logManager->sendDestructCreateObjectLog(*this);
 }
 
 void MinecraftInstance::setComponents(const std::vector<MinecraftComponent *> &_components) {

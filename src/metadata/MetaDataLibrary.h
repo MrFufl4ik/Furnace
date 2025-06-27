@@ -16,8 +16,8 @@ public:
             const std::string &_downloadArtifactUrl
     );
 
-    const std::string &getName() { return name; };
-    const std::string &getDownloadArtifactSha1()   { return downloadArtifactSha1;  };
-    const std::string &getDownloadArtifactSize()   { return downloadArtifactSize;  };
-    const std::string &getDownloadArtifactUrl()    { return downloadArtifactUrl;   };
+    const std::string &getName()                    const { return name; };
+    const std::string &getDownloadArtifactSha1()    const { return downloadArtifactSha1;  };
+    const std::string &getDownloadArtifactSize()    const { return downloadArtifactSize;  };
+    const std::string &getDownloadArtifactUrl()     const { return downloadArtifactUrl;   };
 };
