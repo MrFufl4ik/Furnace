@@ -15,12 +15,14 @@ private:
     std::string *compatibleJavaName;
     std::vector<MetaDataLibrary> metaDataLibraries;
 
+    std::string *name;
+    int *order;
     std::string *type;
     std::string *uid;
     std::string *version;
 
     std::vector<MinecraftComponent> requiresMinecraftComponent;
-    std::vector<MinecraftComponent> conflictMinecraftComponent;
+    std::vector<MinecraftComponent> conflictsMinecraftComponent;
 public:
     void setMetaDataAssetIndex(const MetaDataAssetIndex &meta_data_asset_index);
     const MetaDataAssetIndex &getMetaDataAssetIndex() { return *assetIndex; };
@@ -38,6 +40,14 @@ public:
     const std::vector<MetaDataLibrary> &getMetaDataLibraries() { return metaDataLibraries; };
     bool hasMetaDataLibraries() { return !metaDataLibraries.empty(); };
 
+    void setName(const std::string &name);
+    const std::string &getName() { return *name; };
+    bool hasName() { return name != nullptr; };
+
+    void setOrder(int order);
+    int getOrder() { return *order; };
+    bool hasOrder() { return order != nullptr; };
+
     void setType(const std::string &type);
     const std::string &getType() { return *type; };
     bool hasType() { return type != nullptr; };
@@ -50,6 +60,13 @@ public:
     const std::string &getVersion() { return *version; };
     bool hasVersion() { return version != nullptr; };
 
+    void setRequiresMinecraftComponent(const std::vector<MinecraftComponent> &requires_minecraft_component);
+    const std::vector<MinecraftComponent> &getRequiresMinecraftComponent() { return requiresMinecraftComponent; };
+    bool hasRequiresMinecraftComponent() { return !requiresMinecraftComponent.empty(); };
+
+    void setConflictsMinecraftComponent(const std::vector<MinecraftComponent> &conflicts_minecraft_component);
+    const std::vector<MinecraftComponent> &getConflictsMinecraftComponent() { return conflictsMinecraftComponent; };
+    bool hasConflictsMinecraftComponent() { return !conflictsMinecraftComponent.empty(); };
 };
 
 #endif //FURNACE_META_DATA_H

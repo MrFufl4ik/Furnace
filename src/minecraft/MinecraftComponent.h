@@ -8,20 +8,22 @@
 class LogManager;
 
 class MinecraftComponent {
+private:
+    std::string *uid;
+    std::string *version;
 public:
     MinecraftComponent();
     ~MinecraftComponent();
 
     void setUID(const std::string &component_uid);
-    std::string *getUID() const { return componentUid; };
+    [[nodiscard]] const std::string &getUid() const { return *uid; };
+    [[nodiscard]] bool hasUid() const { return uid != nullptr; };
 
     void setVersion(const std::string &component_version);
-    std::string *getVersion() const { return componentVersion; };
+    [[nodiscard]] const std::string &getVersion() const { return *version; };
+    [[nodiscard]] bool hasVersion() const { return version != nullptr; };
 
     LogManager *logManager;
-private:
-    std::string *componentUid;
-    std::string *componentVersion;
 };
 
 #endif //FURNACE_MINECRAFT_COMPONENT_H

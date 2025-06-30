@@ -17,13 +17,13 @@ int main(int argc, char **argv) {
     for (int i = 0; i < main_args.size(); i++)
         logManager->sendInfoLog(std::format("Argument {}: {}", std::to_string(i), main_args[i]));
 
-    auto *mcMinecraftComponent = new MinecraftComponent();
+    auto mcMinecraftComponent = new MinecraftComponent();
     mcMinecraftComponent->setUID("net.minecraft");
     mcMinecraftComponent->setVersion("1.21.1");
 
-    auto *newMinecraftComponent = new MinecraftComponent();
+    auto newMinecraftComponent = new MinecraftComponent();
     newMinecraftComponent->setUID("org.lwjgl3");
-    newMinecraftComponent->setVersion("org.lwjgl3");
+    newMinecraftComponent->setVersion("3.3.3");
 
     MinecraftInstance baseInstance = MinecraftInstance();
     baseInstance.setJavaPath(
