@@ -32,5 +32,7 @@ add_executable(furnace main.cpp
         src/operatingsystem/OperatingSystemManager.h
         src/json/JsonUtils.cpp
         src/json/JsonUtils.h
+        src/metadata/types/MinecraftMetaData.cpp
+        src/metadata/types/MinecraftMetaData.h
 )
 target_link_libraries(furnace PRIVATE stdc++)
