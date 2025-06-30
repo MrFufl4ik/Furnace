@@ -39,3 +39,36 @@ std::filesystem::path OperatingSystemManager::getExecutableDirectory() {
         return {};
     }
 }
+
+std::filesystem::path OperatingSystemManager::getPrismLauncherDirectory() {
+    try {
+#ifdef _WIN32
+        // Windows: Get AppData/Roaming path
+        wchar_t* roamingPath = nullptr;
+        if (SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, nullptr, &roamingPath) != S_OK) {
+            return {};
+        }
+
+        std::filesystem::path prismPath = fs::path(roamingPath) / "PrismLauncher";
+        CoTaskMemFree(roamingPath);
+        return prismPath;
+
+#elif defined(__linux__)
+        // Linux: Get $HOME/.local/share path
+        const char* homeDir = getenv("HOME");
+        if (!homeDir) {
+            homeDir = getpwuid(getuid())->pw_dir;
+            if (!homeDir) {
+                return {};
+            }
+        }
+
+        return std::filesystem::path(homeDir) / ".local" / "share" / "PrismLauncher";
+
+#else
+#error "Unsupported platform"
+#endif
+    } catch (...) {
+        return {};
+    }
+}

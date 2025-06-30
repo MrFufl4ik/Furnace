@@ -9,7 +9,8 @@
 #include <windows.h>
 #elif defined(__linux__)
 #include <unistd.h>
-#include <limits.h>
+#include <pwd.h>
+#include <climits>
 #endif
 
 class OperatingSystemManager {
@@ -21,7 +22,7 @@ private:
 public:
     static OperatingSystemManager *getInstance();
 
-
+    std::filesystem::path getPrismLauncherDirectory();
     std::filesystem::path getExecutablePath();
     std::filesystem::path getExecutableDirectory();
 
